@@ -1,0 +1,98 @@
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+local Window;
+
+-- easy obby teleport
+-- hard obby teleport
+-- walkspeed
+
+local function FindHome()
+    local Home = false;
+    for _, Tycoon in pairs (game:GetService("Workspace").Tycoons:GetChildren()) do
+        if Tycoon.Owner.Value == Player then
+            Home = Tycoon.TycoonGate.Claim;
+        end
+    end
+    return Home;
+end
+
+function SetupHax()
+    local HaxTab = Window:MakeTab({
+        Name = "Hax",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    local TeleportsSection = HaxTab:AddSection({ -- TELEPORTS
+        Name = "Teleports"
+    })
+    TeleportsSection:AddButton({
+        Name = "Easy Obby",
+        Callback = function()
+            Player.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(0, 0.724234, -261.125))
+        end
+    })
+    TeleportsSection:AddButton({
+        Name = "Hard Obby",
+        Callback = function()
+            Player.Character.HumanoidRootPart.CFrame = CFrame.new(Vector3.new(0, 30.2242, 268.5))
+        end
+    })
+    TeleportsSection:AddButton({
+        Name = "Home",
+        Callback = function()
+            local Home = FindHome()
+            if Home then
+                Player.Character.HumanoidRootPart.CFrame = Home.CFrame;
+            else
+                OrionLib:MakeNotification({
+                    Name = "Error",
+                    Content = "You haven't claimed a factory.",
+                    Image = "rbxassetid://4483345998",
+                    Time = 5
+                })
+            end
+        end
+    })
+
+    local MiscSection = HaxTab:AddSection({ -- MISCELLANEOUS
+        Name = "Miscellaneous"
+    })
+    MiscSection:AddSlider({
+        Name = "WalkSpeed",
+        Min = 0,
+        Max = 64,
+        Default = 16,
+        Color = Color3.fromRGB(0, 238, 255),
+        Increment = 1,
+        ValueName = "WalkSpeed",
+        Callback = function(Value)
+            Player.Character.Humanoid.WalkSpeed = Value
+        end    
+    })
+end
+
+function SetupCredits()
+    local CreditsTab = Window:MakeTab({
+        Name = "Credits",
+        Icon = "rbxassetid://4483345998",
+        PremiumOnly = false
+    })
+
+    CreditsTab:AddLabel("Created by NyggaCorp")
+    CreditsTab:AddLabel("Death to Kolia may that bozo rest in piss.")
+end
+
+function Setup()
+    if game.PlaceId ~= 10905034443 then return end
+    Window = OrionLib:MakeWindow({Name = "🍇🍊 SFT XploitHub 🍉🥝 - NyggaCorp", HidePremium = false, IntroText = "SFT XploitHub by NyggaCorp", SaveConfig = true, ConfigFolder = "SmoothieTycoonX"})
+
+    OrionLib:Init()
+
+    SetupHax()
+    SetupCredits()
+end
+
+Setup()
