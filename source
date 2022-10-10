@@ -4,10 +4,6 @@ local Player = Players.LocalPlayer
 local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
 local Window;
 
--- easy obby teleport
--- hard obby teleport
--- walkspeed
-
 local function FindHome()
     local Home = false;
     for _, Tycoon in pairs (game:GetService("Workspace").Tycoons:GetChildren()) do
@@ -61,13 +57,13 @@ function SetupHax()
         Name = "Miscellaneous"
     })
     MiscSection:AddSlider({
-        Name = "WalkSpeed",
+        Name = "Walk Speed",
         Min = 0,
         Max = 64,
         Default = 16,
         Color = Color3.fromRGB(0, 238, 255),
         Increment = 1,
-        ValueName = "WalkSpeed",
+        ValueName = "Studs per second",
         Callback = function(Value)
             Player.Character.Humanoid.WalkSpeed = Value
         end    
@@ -81,7 +77,7 @@ function SetupCredits()
         PremiumOnly = false
     })
 
-    CreditsTab:AddLabel("Created by NyggaCorp")
+    CreditsTab:AddLabel("Created by NyggaCorp.")
     CreditsTab:AddLabel("Death to Kolia may that bozo rest in piss.")
 end
 
