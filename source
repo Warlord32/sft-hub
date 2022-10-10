@@ -24,6 +24,7 @@ function SetupHax()
     local TeleportsSection = HaxTab:AddSection({ -- TELEPORTS
         Name = "Teleports"
     })
+
     TeleportsSection:AddButton({
         Name = "Easy Obby",
         Callback = function()
@@ -59,7 +60,7 @@ function SetupHax()
     MiscSection:AddSlider({
         Name = "Walk Speed",
         Min = 0,
-        Max = 64,
+        Max = 86,
         Default = 16,
         Color = Color3.fromRGB(0, 238, 255),
         Increment = 1,
@@ -77,8 +78,8 @@ function SetupCredits()
         PremiumOnly = false
     })
 
-    CreditsTab:AddLabel("Created by NyggaCorp.")
-    CreditsTab:AddLabel("Death to Kolia may that bozo rest in piss.")
+    CreditsTab:AddLabel("NyggaCorp XploitHub 1.0")
+    CreditsTab:AddParagraph("Smoothie Factory Tycoon", "NyggaCorp presents a easy to use hub for smoothening your experience at the smoothie factory tycoon. This piece of software was created with blood and sweat by the master engineers of NyggaCorp praise be upon them.")
 end
 
 function Setup()
